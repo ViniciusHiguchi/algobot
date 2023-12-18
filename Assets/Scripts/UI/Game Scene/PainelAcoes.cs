@@ -15,6 +15,18 @@ using UnityEngine.Video;
 //o próximo objeto, assim seria economizado algum tempo na construção da lógica, apesar de ser uma solução ruim.
 //talvez assim fique até mais fácil para adicionar um bloco de código entre outros 2
 
+/// <summary>
+/// Responsável por colocar as âncoras dos objetos Drag and Drop (DND)
+///
+/// neste caso, a solução usa algumas âncoras para calcular o espaço do painel onde é construído o pseudocódigo do jogo
+///
+/// assim, sempre que o jogador adicionar um objeto na última âncora da matriz, surge uma nova na próxima posição.
+/// isto facilitia o jogabilidade porque o jogador instintivamente sabe qual a ordem que as ações devem ser colocadas.
+///
+/// uma limitação deste código é que não há uma função para fazer scroll, isto limita o código a 16 blocos,
+/// se vocês quiserem adicionar mapas maiores que o 4x4 original, vai ser necessário implementar um scroll ou abas (é preferível fazer scroll, por conta de facilitar a gameplay, mas fazer com abas é mais simples)
+/// e fazer com que este código conforme a adição de novas ancoras ao novo paradigma
+/// </summary>
 public class PainelAcoes : MonoBehaviour
 {
     //ancoras do sistema de drag and drop
@@ -77,18 +89,20 @@ public class PainelAcoes : MonoBehaviour
         Add(0);
     }
 
-    public void Add(int posicao) // gobj acao int posicao
-    {
+    public void Add(int posicao) //int posicao no array, se eu quero adicionar o 4o elemento (primeiro da segunda linha), este parâmetro viria como 3
+    {                                                                                           //o o o
+                                                                                                //x <--
         if (posicao >= elemLinha*quantLinhas)
             return;
         if (PlaceholderList[posicao] != null)
             return;
             
-
+        //obs: espero que vocÊs tenham feito BM, eu estava louco de matemática quando fiz esse código. Não é muito complicado, mas a forma que eu escrevi foi meio maluca.
+        
         //dado par ordenado (i, j)
         //cada linha tem 3 objetos, e existem n linhas
         //para achar linha j, usando a posicao da acao, considerando uma ordem que parte de 0 ao infinito
-        //pega se o menor inteiro (Math.floor()) da posicao dividida pela quantidade de elementos na linha (3)
+        //pega se o menor inteiro (Math.floor()) da posicao dividida pela quantidade de elementos na linha (3) (posição / 3)
         //para achar a coluna, pega se a posição - linha * 3(elementos na linha)
         float divisao = posicao / elemLinha;
         int linha = Convert.ToInt32(Math.Floor(divisao));
@@ -131,6 +145,7 @@ public class PainelAcoes : MonoBehaviour
 
     public int GetTamanho()
     {
+        //retorna o tamanho que o array deve ter para suportar a UI com esses parâmetros de coluna vs linhas
         return (elemLinha * quantLinhas);
     }
     

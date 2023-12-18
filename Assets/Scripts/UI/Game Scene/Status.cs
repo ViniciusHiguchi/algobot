@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// esta classe tem como objetivo fazer o tracking da performance do jogador, dificuldade do nível, etc...
+/// é uma classe que essencialmente serve como uma micro database contextual desses dados.
+/// </summary>
 public class Status : MonoBehaviour
 {
     public GameObject StatusNivel;

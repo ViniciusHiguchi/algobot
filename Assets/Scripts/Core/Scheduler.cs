@@ -16,7 +16,6 @@ public class Scheduler : MonoBehaviour
     public GameObject endingScreen;
     
     
-    //mock data
     private float cooldown = 0; 
     private float actionCooldown = 0.5f; // cooldown between actions
     public float currentAction = 0;
@@ -103,7 +102,8 @@ public class Scheduler : MonoBehaviour
                     //sim, eu concordo, essa sequencia de if's é a implementação mais
                     //preguiçosa desse projeto inteiro, mas eu tenho 2 semanas pra entregar o protótipo.
                     
-                    //atualização (09/09) sobre o comentário acima, eu ainda era ingênuo.
+                    //atualização (09/09/21) sobre o comentário acima, eu ainda era ingênuo.*
+                    //*veja o animation handler
                 }
                 else
                 {

@@ -11,20 +11,21 @@ using UnityEngine;
 /// <summary>
 /// Responsável por ler os arquivos do dispositivo e armazenar os arquivos lidos, conforme necessário.
 /// </summary>
-
 public class ReadLevel : MonoBehaviour
 {
     private string filePath;
 
     public static List<string> levelFiles;
-    //# if UNITY_ANDROID
-    //private UnityWebRequest webRequest = new UnityWebRequest();
+    /// <summary>
+    /// Lê os arquivos de nível do dispositivo e armazena os nomes dos arquivos na lista levelFiles.
+    /// </summary>
     public void Read()
     {
         filePath = "not found";
 
+        // Lista para armazenar os nomes dos arquivos de nível.
         List<string> levels = new List<string>();
-        
+        // Para Android, lê os arquivos de um arquivo ZIP (o APK é essencialmente um .zip).
         #if UNITY_ANDROID && !UNITY_EDITOR
         filePath = Application.dataPath;
         using (ZipArchive archive = ZipFile.OpenRead(filePath))
@@ -41,6 +42,8 @@ public class ReadLevel : MonoBehaviour
         }
 
         #endif
+        
+        // Para o Editor Unity, lê os arquivos diretamente da pasta "Assets/StreamingAssets/levels/".
         #if UNITY_EDITOR
         filePath = "Assets/StreamingAssets/levels/";
         print("editor");
@@ -50,7 +53,7 @@ public class ReadLevel : MonoBehaviour
             {
                 DirectoryInfo dir = new DirectoryInfo(filePath);
                 FileInfo[] files = dir.GetFiles("*.txt");
-                //load
+                // Adiciona os nomes dos arquivos de nível à lista.
                 foreach (var file in files)
                 {
                     levels.Add(file.Name);
@@ -67,11 +70,11 @@ public class ReadLevel : MonoBehaviour
         {
             print("platform not supported");
         }
-
+        
+    // Atualiza a lista estática com os nomes dos arquivos de nível.
         levelFiles = levels;
     }
     
-   // #endif
     // Start is called before the first frame update
     void Start()
     {
