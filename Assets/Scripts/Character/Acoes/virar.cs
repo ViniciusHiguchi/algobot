@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// faz a alteração do vetor que representa o forward (direção que está olhando) do personagem, com base em se o personagem virou para a esquerda ou para a direita
+/// </summary>
 public class virar : MonoBehaviour
 {
     // private bool started = false;
@@ -53,36 +56,4 @@ public class virar : MonoBehaviour
 
         return forward;
     }
-
-    // void SetEscalaX(Vector2 forward)
-    // {
-    //     if (forward == new Vector2(1,0))
-    //     {
-    //         GetComponent<Transform>().localScale = new Vector3(
-    //             -1*Math.Abs(GetComponent<Transform>().localScale.x), 
-    //             GetComponent<Transform>().localScale.y, 
-    //             GetComponent<Transform>().localScale.z );
-    //     }
-    //     if (forward == new Vector2(-1,0))
-    //     {
-    //         GetComponent<Transform>().localScale = new Vector3(
-    //             -1*Math.Abs(GetComponent<Transform>().localScale.x), 
-    //             GetComponent<Transform>().localScale.y, 
-    //             GetComponent<Transform>().localScale.z );
-    //     }
-    //     if (forward == new Vector2(0,1))
-    //     {
-    //         GetComponent<Transform>().localScale = new Vector3(
-    //             Math.Abs(GetComponent<Transform>().localScale.x), 
-    //             GetComponent<Transform>().localScale.y, 
-    //             GetComponent<Transform>().localScale.z );
-    //     }
-    //     if (forward == new Vector2(0,-1))
-    //     {
-    //         GetComponent<Transform>().localScale = new Vector3(
-    //             Math.Abs(GetComponent<Transform>().localScale.x), 
-    //             GetComponent<Transform>().localScale.y, 
-    //             GetComponent<Transform>().localScale.z );
-    //     }
-    // }
 }

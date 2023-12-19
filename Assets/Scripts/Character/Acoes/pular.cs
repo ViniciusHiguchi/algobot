@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// essa função faz a transformação física no espaço do jogo para a ação de pular, usando a referência de onde a personagem começou e qual é o bloco para onde ela deve ir
+/// para representar o pulo é encontrada uma parábola com raizes nas coordenadas da referencia A e B, e ajustado o ponto máximo para um valor predeterminado 
+/// usando uma homotetia vertical: https://youtu.be/C4eqsZ7rr-8?t=244 isto para evitar que o personagem dê um pulo muito alto.
+///
+/// é chamada uma vez por FixedUpdate do scheduler
+/// </summary>
 public class pular : MonoBehaviour
 {
     private bool started = false;
@@ -119,6 +126,9 @@ public class pular : MonoBehaviour
             // distancia = new Vector2(this.gameObject.transform.position.x - referenciaB.transform.position.x,
             //     this.gameObject.transform.position.z - referenciaB.transform.position.z).magnitude; 
             float zPos = this.gameObject.transform.position.z + direcao.z*Time.deltaTime;
+            
+            //para achar a parábola é gerada uma função de segundo grau com as raízes em A e B da seguinte forma: (z - raizA) * (z - raizB)
+            //isso garante que as raízes serão sempre raizA e RaizB, e depois é aplicada as funções e constantes para normalizar a curva
             float yPos = (((zPos - referenciaA.transform.position.z)*(zPos - referenciaB.transform.position.z)*-1)/coeficienteHomotetia) + yDisplacement + referenciaA.transform.position.y;
             incerteza = zPos * 4 + (referenciaA.transform.position.z + referenciaB.transform.position.z);
             this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, yPos, zPos);

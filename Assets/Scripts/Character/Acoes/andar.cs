@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 
+/// <summary>
+/// essa função faz a transformação física no espaço do jogo para a ação de andar, usando a referência de onde a personagem começou e qual é o bloco para onde ela deve ir
+///
+/// é chamada uma vez por FixedUpdate do scheduler
+/// </summary>
 public class andar : MonoBehaviour
 {
     private bool started = false;

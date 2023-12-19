@@ -6,31 +6,44 @@ using System.Linq;
 
 public class LevelEndingRouter : MonoBehaviour
 {
+    // Nome do próximo mapa a ser carregado.
     private string nextMap;
 
-    private int dificuldadeAtual = 0; //dificuldade em níveis discretos para escolha do mapa
-    private int comboAtual; //quantidade de partidas consecutivas com eficiencia >= 66%
-    private int mapasCompletadosAtual = 0; //int que represanta qual a posição do mapa na lista de mapas atuais.
+    // Dificuldade atual em níveis discretos para a escolha do mapa.
+    private int dificuldadeAtual = 0;
+
+    // Quantidade de partidas consecutivas com eficiência >= 66%.
+    private int comboAtual;
+
+    // Posição do mapa atual na lista de mapas.
+    private int mapasCompletadosAtual = 0;
+    
+    // Identificador do nível.
     private int identificadorNivel;
-    private int partidasToDificuldade = 3; //constante de quantas partidas em comboAtual são necessárias pra avançar
+
+    // Número de partidas em comboAtual necessárias para avançar na dificuldade.
+    private int partidasToDificuldade = 3;
+
+    // Contador de tentativas.
     private int tentativa = 1;
 
+    // Referências para sobreposições de retry e level ending.
     public GameObject retryOverlay;
     public GameObject levelEndingOverlay;
-    //referencias para reset
+
+    // Referências para objetos a serem resetados.
     public GameObject character;
     public GameObject painelAcoes;
     public GameObject interpretador;
     public GameObject bottomMenu;
 
+    // Referência ao controlador de eficiência.
     public GameObject eficienciaController;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    //este metodo deve ser chamado depois da primeira execução do interpretador.
+    /// <summary>
+    /// Este método deve ser chamado depois da primeira execução do interpretador.
+    /// Inicializa as variáveis de controle do nível.
+    /// </summary>
     public void SetLevelControlVariables()
     {
         if (dificuldadeAtual == 0)
@@ -60,6 +73,9 @@ public class LevelEndingRouter : MonoBehaviour
         print("(start) dificuldade: " + dificuldadeAtual);
     }
     
+    /// <summary>
+    /// Carrega o próximo nível e reseta as variáveis do jogo.
+    /// </summary>
     public void LoadNextLevel()
     {
         tentativa = 1;
@@ -73,7 +89,10 @@ public class LevelEndingRouter : MonoBehaviour
         ResetGameScene();
         print("LevelEndingRouter Line 44");
     }
-
+    
+    /// <summary>
+    /// Calcula o próximo mapa com base nas variáveis de controle do jogo.
+    /// </summary>
     private string NextMap()
     {
 
@@ -97,7 +116,7 @@ public class LevelEndingRouter : MonoBehaviour
         {
             mapasCompletadosAtual = 0;
             comboAtual = 0;
-            dificuldadeAtual = Mathf.Clamp(dificuldadeAtual + 1, 1, 5);
+            dificuldadeAtual = Mathf.Clamp(dificuldadeAtual + 1, 1, 5); //Mathf.clamp impede que o valor do resultado da operação seja maior que os limites estabelecidos
             Debug.Log("nova dificuldade: "+dificuldadeAtual);
         }
         
@@ -122,22 +141,29 @@ public class LevelEndingRouter : MonoBehaviour
                 }
             }
         }
-        //reset da variável, porque se o jogador não conseguir mudar a dificuldade todos os mapas depois de acabar
-        //os mapas disponíveis serão o primeiro mapa, pois o codigo sempre vai cair nessa exceção
+        //reset da variável, porque se o jogador não conseguir mudar a dificuldade,
+        //todos os mapas depois de acabar os mapas disponíveis serão o primeiro mapa, o codigo sempre vai cair nessa exceção
         mapasCompletadosAtual = 0;
         return maps.First();
     }
     
+    /// <summary>
+    /// Reseta os objetos da cena após a conclusão do nível.
+    /// </summary>
     public void ResetGameScene()
     {
         character.GetComponent<CharacterController>().ResetChar();
         painelAcoes.GetComponent<PainelAcoes>().ResetPainel();
     }
 
+    /// <summary>
+    /// Inicia a sobreposição de final de nível, determinando se foi concluído ou se deve ser tentado novamente.
+    /// </summary>
     public void StartEndingOverlay(bool isFinish)
     {
         if (isFinish)
         {
+            // Atualiza a pontuação máxima salva na memória se a eficiência atual for maior.
             if (!PlayerPrefs.HasKey(Intepretador.currentMap) ||
                 eficienciaController.GetComponent<Eficiencia>().GetEficiencia() >
                 PlayerPrefs.GetFloat(Intepretador.currentMap))
@@ -154,6 +180,9 @@ public class LevelEndingRouter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Incrementa o contador de tentativas e reseta a cena para uma nova tentativa.
+    /// </summary>
     public void Retry()
     {
         tentativa++;

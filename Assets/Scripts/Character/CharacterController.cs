@@ -18,6 +18,9 @@ public class CharacterController : MonoBehaviour
     
     
     // Start is called before the first frame update
+    /// <summary>
+    /// inicializa o personagem no primeiro frame. Acho que daria só para chamar o ResetChar aqui
+    /// </summary>
     void Start()
     {
         forwardDirection = new Vector2(0, -1);
@@ -32,6 +35,9 @@ public class CharacterController : MonoBehaviour
         this.gameObject.GetComponent<AnimationHandler>().Stand(forwardDirection);
     }
 
+    /// <summary>
+    /// faz o reset do personagem para uma nova tentativa ou novo mapa
+    /// </summary>
     public void ResetChar()
     {
         forwardDirection = new Vector2(0, -1);
@@ -51,7 +57,12 @@ public class CharacterController : MonoBehaviour
     {
         
     }
-
+    /// <summary>
+    /// chamado ao término de cada ação, atualiza as referências de posição do personagem, direção, e se chegou ao bloco final
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="forward"></param>
+    /// <param name="status"></param>
     public void termino(Vector2 pos, Vector2 forward, float status)
     {
         if (status == 1)
