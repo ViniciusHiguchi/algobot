@@ -23,6 +23,27 @@ TextureImporter:
   - first:
       213: -1526955488664978923
     second: back jump landing unity_6
+  - first:
+      213: -5964396189290730753
+    second: back jump landing unity_0
+  - first:
+      213: -1749340346754555944
+    second: back jump landing unity_1
+  - first:
+      213: 7539291807399151047
+    second: back jump landing unity_2
+  - first:
+      213: 1394667187370527249
+    second: back jump landing unity_3
+  - first:
+      213: 3014492055591207326
+    second: back jump landing unity_4
+  - first:
+      213: -5820126419950590298
+    second: back jump landing unity_5
+  - first:
+      213: -468106246188752329
+    second: back jump landing unity_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,6 +139,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1

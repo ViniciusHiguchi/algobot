@@ -40,7 +40,7 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     public void ResetChar()
     {
-        forwardDirection = new Vector2(0, -1);
+        forwardDirection = new Vector2(-1, 0); 
         matrizReferencia = mapa.GetComponent<Intepretador>().GetMatriz();
         inicioReferencia = mapa.GetComponent<Intepretador>().GetInicio();
         this.gameObject.transform.position = new Vector3(

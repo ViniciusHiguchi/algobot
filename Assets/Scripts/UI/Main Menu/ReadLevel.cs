@@ -44,8 +44,8 @@ public class ReadLevel : MonoBehaviour
         #endif
         
         // Para o Editor Unity, lê os arquivos diretamente da pasta "Assets/StreamingAssets/levels/".
-        #if UNITY_EDITOR
-        filePath = "Assets/StreamingAssets/levels/";
+        #if UNITY_EDITOR || UNITY_STANDALONE
+        filePath = Path.Combine(Application.streamingAssetsPath, "levels");
         print("editor");
         if (filePath != "not found")
         {

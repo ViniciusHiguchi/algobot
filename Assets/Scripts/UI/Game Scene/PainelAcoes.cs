@@ -91,7 +91,7 @@ public class PainelAcoes : MonoBehaviour
 
     public void Add(int posicao) //int posicao no array, se eu quero adicionar o 4o elemento (primeiro da segunda linha), este parâmetro viria como 3
     {                                                                                           //o o o
-                                                                                                //x <--
+                                                                                             //x <--
         if (posicao >= elemLinha*quantLinhas)
             return;
         if (PlaceholderList[posicao] != null)

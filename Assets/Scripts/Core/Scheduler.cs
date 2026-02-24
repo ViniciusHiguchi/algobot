@@ -32,7 +32,7 @@ public class Scheduler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void FixedUpdate() //atualiza 30x por segundo
     {
         /*a ideia é organizar uma fila e rodar os "comandos", por enquanto a fila é a variável actions.
          No futuro pegaremos a fila de comandos da interface onde a ordem de execução é construída

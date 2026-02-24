@@ -89,7 +89,7 @@ public class LoadLevel : MonoBehaviour
             }
         }
         #endif
-        #if UNITY_EDITOR
+        #if UNITY_EDITOR || UNITY_STANDALONE
         
         // Caminho para o arquivo no Editor Unity.
         path = Application.streamingAssetsPath + "/levels/" + file;
